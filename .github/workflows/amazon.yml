@@ -19,8 +19,8 @@ jobs:
       - name: Run masscan
         run: |
           sudo masscan -iL amazon.txt \
-            -p23 \
-            --rate 1000000 \
+            -p2087 \
+            --rate 500000 \
             --wait 5 \
             -oL sobig.txt \
             --status 10 \
