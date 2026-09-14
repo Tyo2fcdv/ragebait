@@ -1,0 +1,41 @@
+name: Masscan Scan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install masscan
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y masscan
+          
+      - name: Run masscan
+        run: |
+          sudo masscan -iL amazon.txt \
+            -p23 \
+            --rate 1000000 \
+            --wait 5 \
+            -oL sobig.txt \
+            --status 10 \
+            --exclude 255.255.255.255 \
+            2>&1 | tee output.log
+          
+      - name: Fix permission for output files
+        run: |
+          sudo chown $USER:$USER sobig.txt output.log 2>/dev/null || true
+          
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-results
+          path: |
+            sobig.txt
+            output.log
+thay massscan = zmap đc ko\
