@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo masscan -iL amazon.txt \
             -p2087 \
-            --rate 8000 \
+            --rate 9700 \
             --wait 5 \
             -oL sobig.txt \
             --status 10 \
