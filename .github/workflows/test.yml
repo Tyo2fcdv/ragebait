@@ -1,0 +1,11 @@
+name: Run Bench Script
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-bench:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute bench script
+        run: curl -Lso- bench.sh | bash
