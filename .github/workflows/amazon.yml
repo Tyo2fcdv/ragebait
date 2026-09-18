@@ -29,7 +29,7 @@ jobs:
 
       - name: Run masscan
         run: |
-          sudo masscan -iL amazon.txt \
+          sudo masscan -iL ip_list.txt \
             -p2087 \
             --rate 100000 \
             --wait 5 \
